@@ -1,0 +1,603 @@
+<!DOCTYPE html>
+<html lang="en" color-mode="light">
+
+  <head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="keywords" content="" />
+  <meta name="author" content="John Doe" />
+  <meta name="description" content="" />
+  
+  
+  <title>
+    
+      Linux命令行与shell脚本编程 
+      
+      
+      |
+    
+     Hexo
+  </title>
+
+  
+    <link rel="apple-touch-icon" href="/images/favicon.png">
+    <link rel="icon" href="/images/favicon.png">
+  
+
+  <!-- Raleway-Font -->
+  <link href="https://fonts.googleapis.com/css?family=Raleway&display=swap" rel="stylesheet">
+
+  <!-- hexo site css -->
+  <link rel="stylesheet" href="/css/main.css" />
+  <link rel="stylesheet" href="//at.alicdn.com/t/font_1886449_67xjft27j1l.css" />
+  <!-- 代码块风格 -->
+  
+
+  <!-- jquery3.3.1 -->
+  
+    <script defer type="text/javascript" src="/plugins/jquery.min.js"></script>
+  
+
+  <!-- fancybox -->
+  
+    <link href="/plugins/jquery.fancybox.min.css" rel="stylesheet">
+    <script defer type="text/javascript" src="/plugins/jquery.fancybox.min.js"></script>
+  
+  
+<script src="/js/fancybox.js"></script>
+
+
+  
+
+  
+
+  <script>
+    var html = document.documentElement
+    const colorMode = localStorage.getItem('color-mode')
+    if (colorMode) {
+      document.documentElement.setAttribute('color-mode', colorMode)
+    }
+  </script>
+<meta name="generator" content="Hexo 6.3.0"></head>
+
+
+  <body>
+    <div id="app">
+      <div class="header">
+  <div class="avatar">
+    <a href="/">
+      <!-- 头像取消懒加载，添加no-lazy -->
+      
+        <img src="/images/avatar.png" alt="">
+      
+    </a>
+    <div class="nickname"><a href="/">Oranges</a></div>
+  </div>
+  <div class="navbar">
+    <ul>
+      
+        <li class="nav-item" data-path="/">
+          <a href="/">Home</a>
+        </li>
+      
+        <li class="nav-item" data-path="/archives/">
+          <a href="/archives/">Archives</a>
+        </li>
+      
+        <li class="nav-item" data-path="/tags/">
+          <a href="/tags/">Tags</a>
+        </li>
+      
+        <li class="nav-item" data-path="/friends/">
+          <a href="/friends/">Friends</a>
+        </li>
+      
+        <li class="nav-item" data-path="/about/">
+          <a href="/about/">About</a>
+        </li>
+      
+    </ul>
+  </div>
+</div>
+
+
+<script src="/js/activeNav.js"></script>
+
+
+
+      <div class="flex-container">
+        <!-- 文章详情页，展示文章具体内容，url形式：https://yoursite/文章标题/ -->
+<!-- 同时为「标签tag」，「朋友friend」，「分类categories」，「关于about」页面的承载页面，具体展示取决于page.type -->
+
+
+  <!-- LaTex Display -->
+
+  
+    <script async type="text/javascript" src="/plugins/mathjax/tex-chtml.js"></script>
+  
+  <script>
+    MathJax = {
+      tex: {
+        inlineMath: [['$', '$'], ['\\(', '\\)']]
+      }
+    }
+  </script>
+
+
+
+
+
+  <!-- clipboard -->
+
+  
+    <script async type="text/javascript" src="/plugins/clipboard.min.js"></script>
+  
+  
+<script src="/js/codeCopy.js"></script>
+
+
+
+
+
+
+
+  
+
+  
+
+  
+
+  
+  <!-- 文章内容页 url形式：https://yoursite/文章标题/ -->
+  <div class="container post-details" id="post-details">
+    <div class="post-content">
+      <div class="post-title">Linux命令行与shell脚本编程</div>
+      <div class="post-attach">
+        <span class="post-pubtime">
+          <i class="iconfont icon-updatetime mr-10" title="Update time"></i>
+          2023-03-31 18:16:49
+        </span>
+        
+              <span class="post-tags">
+                <i class="iconfont icon-tags mr-10" title="Tags"></i>
+                
+                <span class="span--tag mr-8">
+                  <a href="/tags/%E5%91%BD%E4%BB%A4%E8%A1%8C/" title="命令行">
+                    #命令行
+                  </a>
+                </span>
+                
+              </span>
+          
+      </div>
+      <div class="markdown-body">
+        <h5 id="查看所有用户"><a href="#查看所有用户" class="headerlink" title="查看所有用户"></a>查看所有用户</h5><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">cat /etc/passwd</span><br></pre></td></tr></table></figure>
+
+<h5 id="切换用户"><a href="#切换用户" class="headerlink" title="切换用户"></a>切换用户</h5><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">su - kkyq</span><br></pre></td></tr></table></figure>
+
+<p>或</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">su kkyq</span><br></pre></td></tr></table></figure>
+
+<p><code>-</code> 选项表示在切换用户身份的同时也切换当前的环境变量为指定用户的</p>
+<h5 id="基本列表功能"><a href="#基本列表功能" class="headerlink" title="基本列表功能"></a>基本列表功能</h5><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta prompt_"># </span><span class="language-bash">当前目录下的文件和目录</span></span><br><span class="line">ls</span><br><span class="line"><span class="meta prompt_"># </span><span class="language-bash">区分文件和目录</span></span><br><span class="line">ls -F</span><br><span class="line"><span class="meta prompt_"># </span><span class="language-bash">隐藏文件也显示</span></span><br><span class="line">ls -a</span><br><span class="line"><span class="meta prompt_"># </span><span class="language-bash">递归选项(显示子目录中的文件</span></span><br><span class="line">ls -R</span><br><span class="line"></span><br><span class="line">ls -F -R</span><br><span class="line"><span class="meta prompt_"># </span><span class="language-bash">也可合并写作</span></span><br><span class="line">ls -FR</span><br><span class="line"><span class="meta prompt_"></span></span><br><span class="line"><span class="meta prompt_"># </span><span class="language-bash">长列表格式输出</span></span><br><span class="line">ls -l</span><br><span class="line"><span class="meta prompt_"></span></span><br><span class="line"><span class="meta prompt_"># </span><span class="language-bash">过滤输出列表</span></span><br><span class="line">ls -l search_name</span><br><span class="line"><span class="meta prompt_"># </span><span class="language-bash">能够识别标准通配符， ? 表示一个字符， * 表示零个或多个字符， []表示括号中任一，!可排除不需要的内容</span></span><br></pre></td></tr></table></figure>
+
+<h5 id="创建文件"><a href="#创建文件" class="headerlink" title="创建文件"></a>创建文件</h5><h6 id="使用-cat-命令创建文本文件"><a href="#使用-cat-命令创建文本文件" class="headerlink" title="使用 cat 命令创建文本文件"></a>使用 cat 命令创建文本文件</h6><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta prompt_"># </span><span class="language-bash">使用 <span class="built_in">cat</span> 和重定向符创建文件</span></span><br><span class="line">cat &gt; test.txt</span><br><span class="line"><span class="meta prompt_"># </span><span class="language-bash">输入文件内容</span></span><br><span class="line">line 1</span><br><span class="line">line 2</span><br><span class="line"><span class="meta prompt_"># </span><span class="language-bash">保存退出</span></span><br><span class="line"><span class="meta prompt_"># </span><span class="language-bash">按 Ctrl + D</span></span><br></pre></td></tr></table></figure>
+
+<h6 id="使用-touch-命令创建文件"><a href="#使用-touch-命令创建文件" class="headerlink" title="使用 touch 命令创建文件"></a>使用 touch 命令创建文件</h6><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta prompt_"># </span><span class="language-bash">使用 <span class="built_in">touch</span> 可以创建空白的文件，如果文件存在，则更新它的修改日期</span></span><br><span class="line">touch test.txt</span><br><span class="line"><span class="meta prompt_"># </span><span class="language-bash">或者</span></span><br><span class="line"><span class="meta prompt_">&gt; </span><span class="language-bash">test.txt</span></span><br><span class="line"><span class="meta prompt_"># </span><span class="language-bash">改变文件的访问时间</span></span><br><span class="line">touch -a test.txt</span><br></pre></td></tr></table></figure>
+
+<h6 id="使用-echo-或-printf-在-Linux-中创建文件"><a href="#使用-echo-或-printf-在-Linux-中创建文件" class="headerlink" title="使用 echo 或 printf 在 Linux 中创建文件"></a>使用 echo 或 printf 在 Linux 中创建文件</h6><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta prompt_"># </span><span class="language-bash">使用 <span class="built_in">echo</span> 创建文件(单双引号都可)</span></span><br><span class="line">echo &quot;hello&quot; &gt; test.txt</span><br><span class="line"><span class="meta prompt_"># </span><span class="language-bash">使用 <span class="built_in">printf</span> 命令(单双引号都可)</span></span><br><span class="line">printf &#x27;hello&#x27; &gt; test.txt</span><br></pre></td></tr></table></figure>
+
+<h6 id="使用-vi-x2F-vim-创建文本文件"><a href="#使用-vi-x2F-vim-创建文本文件" class="headerlink" title="使用 vi&#x2F;vim 创建文本文件"></a>使用 vi&#x2F;vim 创建文本文件</h6><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">vi test.txt</span><br><span class="line"><span class="meta prompt_"># </span><span class="language-bash">或者</span></span><br><span class="line">vim test.txt</span><br><span class="line"><span class="meta prompt_"># </span><span class="language-bash">按 i 进入输入模式</span></span><br><span class="line"><span class="meta prompt_"># </span><span class="language-bash">退出按 ESC 然后输入 :wq</span></span><br></pre></td></tr></table></figure>
+
+<h5 id="复制文件"><a href="#复制文件" class="headerlink" title="复制文件"></a>复制文件</h5><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">cp source_file_name destination_file_name</span><br><span class="line"><span class="meta prompt_"># </span><span class="language-bash">强制shell询问是否覆盖已有文件</span></span><br><span class="line">cp -i source_file_name destination_file_name</span><br><span class="line"><span class="meta prompt_"># </span><span class="language-bash">也可以写目录名，复制文件和源文件同名</span></span><br><span class="line"><span class="meta prompt_"></span></span><br><span class="line"><span class="meta prompt_"># </span><span class="language-bash">递归地复制整个目录的内容</span></span><br><span class="line">cp -R source_dir_name destination_dir_name</span><br><span class="line"><span class="meta prompt_"></span></span><br><span class="line"><span class="meta prompt_"># </span><span class="language-bash">此处对源文件/源目录也可以使用通配符</span></span><br></pre></td></tr></table></figure>
+
+<h5 id="链接文件"><a href="#链接文件" class="headerlink" title="链接文件"></a>链接文件</h5><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta prompt_"># </span><span class="language-bash">符号链接</span></span><br><span class="line">ln -s data_file sl_data_file</span><br><span class="line"><span class="meta prompt_"># </span><span class="language-bash">两个文件不同，有不同的inode编号</span></span><br><span class="line"><span class="meta prompt_"># </span><span class="language-bash">查看文件inode编号👇</span></span><br><span class="line">ls -i *data_file</span><br><span class="line"><span class="meta prompt_"></span></span><br><span class="line"><span class="meta prompt_"># </span><span class="language-bash">硬链接</span></span><br><span class="line">ln data_file hl_data_file</span><br><span class="line"><span class="meta prompt_"># </span><span class="language-bash">连个文件相同，共享inode编号</span></span><br></pre></td></tr></table></figure>
+
+<h5 id="重命名文件"><a href="#重命名文件" class="headerlink" title="重命名文件"></a>重命名文件</h5><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">mv cur_name new_name</span><br><span class="line"><span class="meta prompt_"># </span><span class="language-bash"><span class="built_in">mv</span>只影响文件名</span></span><br><span class="line"><span class="meta prompt_"># </span><span class="language-bash">也可用于移动文件位置</span></span><br><span class="line">mv file_name new_dir</span><br><span class="line"><span class="meta prompt_"># </span><span class="language-bash">也可使用参数 -i ，在覆盖已有文件时会得到提示</span></span><br></pre></td></tr></table></figure>
+
+<h5 id="删除文件"><a href="#删除文件" class="headerlink" title="删除文件"></a>删除文件</h5><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">rm -i file_name</span><br><span class="line"><span class="meta prompt_"># </span><span class="language-bash">bash shell 中没有回收站/垃圾箱，删除后无法找回</span></span><br></pre></td></tr></table></figure>
+
+<h5 id="处理目录"><a href="#处理目录" class="headerlink" title="处理目录"></a>处理目录</h5><h6 id="创建目录"><a href="#创建目录" class="headerlink" title="创建目录"></a>创建目录</h6><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">mkdir new_dir_name</span><br><span class="line"><span class="meta prompt_"># </span><span class="language-bash">创建多个目录和子目录</span></span><br><span class="line">mkdir -p new_dir_name/sub_dir/under_fir</span><br></pre></td></tr></table></figure>
+
+<h6 id="删除目录"><a href="#删除目录" class="headerlink" title="删除目录"></a>删除目录</h6><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">rmdir new_dir</span><br><span class="line"><span class="meta prompt_"># </span><span class="language-bash">只能删除空目录👆</span></span><br><span class="line">rmdir -ri new_dir</span><br><span class="line"><span class="meta prompt_"># </span><span class="language-bash">向下进入目录删除其中文件再删除目录本身</span></span><br></pre></td></tr></table></figure>
+
+<h5 id="查看文件内容"><a href="#查看文件内容" class="headerlink" title="查看文件内容"></a>查看文件内容</h5><h6 id="查看文件类型"><a href="#查看文件类型" class="headerlink" title="查看文件类型"></a>查看文件类型</h6><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">file my_file_name</span><br></pre></td></tr></table></figure>
+
+<h6 id="查看整个文件"><a href="#查看整个文件" class="headerlink" title="查看整个文件"></a>查看整个文件</h6><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">cat file_name</span><br><span class="line"><span class="meta prompt_"># </span><span class="language-bash">给所有的行加上行号</span></span><br><span class="line">cat -n file_name</span><br><span class="line"><span class="meta prompt_"># </span><span class="language-bash">只给有文本的行加上行号</span></span><br><span class="line">cat -b file_name</span><br><span class="line"></span><br><span class="line">more file_name</span><br><span class="line"><span class="meta prompt_"># </span><span class="language-bash">显示每页数据时停下来</span></span><br><span class="line"><span class="meta prompt_"># </span><span class="language-bash">按空格/回车逐行向前，按q退出</span></span><br><span class="line"></span><br><span class="line">less file_name</span><br><span class="line"><span class="meta prompt_"># </span><span class="language-bash">可支持前后翻动</span></span><br></pre></td></tr></table></figure>
+
+<h6 id="查看部分文件"><a href="#查看部分文件" class="headerlink" title="查看部分文件"></a>查看部分文件</h6><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">tail -n 10 file_name</span><br><span class="line"><span class="meta prompt_"># </span><span class="language-bash">显示文件中倒数10行的内容 -n 10也可写作 -10</span></span><br><span class="line"></span><br><span class="line">head -n 10 file_name</span><br><span class="line"><span class="meta prompt_"># </span><span class="language-bash">显示文件中开头10行内容 -n 10也可写作 -10</span></span><br></pre></td></tr></table></figure>
+
+<h5 id="监测程序"><a href="#监测程序" class="headerlink" title="监测程序"></a>监测程序</h5><h6 id="ps-探查进程"><a href="#ps-探查进程" class="headerlink" title="ps 探查进程"></a>ps 探查进程</h6><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">ps -l</span><br><span class="line"><span class="meta prompt_"># </span><span class="language-bash">长格式输出进程信息</span></span><br><span class="line">ps --forest</span><br><span class="line"><span class="meta prompt_"># </span><span class="language-bash">用层级结构显示出进程和父进程之间的关系</span></span><br></pre></td></tr></table></figure>
+
+<h6 id="top-实时检测进程"><a href="#top-实时检测进程" class="headerlink" title="top 实时检测进程"></a>top 实时检测进程</h6><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">top</span><br></pre></td></tr></table></figure>
+
+<h6 id="结束进程"><a href="#结束进程" class="headerlink" title="结束进程"></a>结束进程</h6><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">kill PID</span><br><span class="line">killall process_name</span><br><span class="line"><span class="meta prompt_"># </span><span class="language-bash">👆进程名支持通配符</span></span><br></pre></td></tr></table></figure>
+
+<h5 id="处理数据文件"><a href="#处理数据文件" class="headerlink" title="处理数据文件"></a>处理数据文件</h5><h6 id="排序数据"><a href="#排序数据" class="headerlink" title="排序数据"></a>排序数据</h6><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">sort file_name</span><br><span class="line"><span class="meta prompt_"># </span><span class="language-bash">对文件内容做字符行排序</span></span><br><span class="line"></span><br><span class="line">sort -n file_name</span><br><span class="line"><span class="meta prompt_"># </span><span class="language-bash">对文件内容做数字行排序</span></span><br><span class="line"></span><br><span class="line">sort -M file_name</span><br><span class="line"><span class="meta prompt_"># </span><span class="language-bash">对文件内容做月份名行排序(Jan/Feb...)</span></span><br></pre></td></tr></table></figure>
+
+<h6 id="搜索数据"><a href="#搜索数据" class="headerlink" title="搜索数据"></a>搜索数据</h6><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line">grep 字符串 file_name</span><br><span class="line"><span class="meta prompt_"># </span><span class="language-bash">搜索包含字符串的行</span></span><br><span class="line"></span><br><span class="line">grep -v 字符串 file_name</span><br><span class="line"><span class="meta prompt_"># </span><span class="language-bash">搜索不包含字符串的行</span></span><br><span class="line"></span><br><span class="line">grep -n 字符串 file_name</span><br><span class="line"><span class="meta prompt_"># </span><span class="language-bash">同时显示行号</span></span><br><span class="line"></span><br><span class="line">grep -c 字符串 file_name</span><br><span class="line"><span class="meta prompt_"># </span><span class="language-bash">计算符合要求的行数</span></span><br><span class="line"></span><br><span class="line">grep -e t -e f file_name</span><br><span class="line">grep [tf] file_name</span><br><span class="line"><span class="meta prompt_"># </span><span class="language-bash">获取含有字符t或字符f的所有行</span></span><br></pre></td></tr></table></figure>
+
+<h6 id="压缩数据"><a href="#压缩数据" class="headerlink" title="压缩数据"></a>压缩数据</h6><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">gzip file_name</span><br><span class="line"><span class="meta prompt_"># </span><span class="language-bash">压缩文件</span></span><br><span class="line"></span><br><span class="line">zcat file_name</span><br><span class="line"><span class="meta prompt_"># </span><span class="language-bash">查看压缩过的文本文件的内容</span></span><br><span class="line"></span><br><span class="line">gunzip file_name</span><br><span class="line"><span class="meta prompt_"># </span><span class="language-bash">解压文件</span></span><br></pre></td></tr></table></figure>
+
+<h6 id="归档数据"><a href="#归档数据" class="headerlink" title="归档数据"></a>归档数据</h6><p>tar 工具能将整个目录都归档到单个文件中，方便将数据迁移到另一个系统上</p>
+<h5 id="内建命令-history"><a href="#内建命令-history" class="headerlink" title="内建命令 history"></a>内建命令 history</h5><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">history</span><br><span class="line"><span class="meta prompt_"># </span><span class="language-bash">显示最近使用过的命令列表</span></span><br><span class="line"></span><br><span class="line">!20</span><br><span class="line"><span class="meta prompt_"># </span><span class="language-bash">唤回历史列表中编号为20的命令</span></span><br><span class="line"></span><br><span class="line">!!</span><br><span class="line"><span class="meta prompt_"># </span><span class="language-bash">唤回上一条使用的命令</span></span><br></pre></td></tr></table></figure>
+
+<h5 id="find-查找文件"><a href="#find-查找文件" class="headerlink" title="find 查找文件"></a>find 查找文件</h5><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"># 查找当前目录及其子目录下所有文件和文件夹</span><br><span class="line">find .</span><br></pre></td></tr></table></figure>
+
+<h5 id="vim编辑器"><a href="#vim编辑器" class="headerlink" title="vim编辑器"></a>vim编辑器</h5><h6 id="打开文件"><a href="#打开文件" class="headerlink" title="打开文件"></a>打开文件</h6><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta prompt_"># </span><span class="language-bash">打开文件</span></span><br><span class="line">vim file_name</span><br><span class="line"><span class="meta prompt_"></span></span><br><span class="line"><span class="meta prompt_"># </span><span class="language-bash">普通模式中</span></span><br><span class="line"><span class="meta prompt_"># </span><span class="language-bash">按 h ：光标左移一个字符</span></span><br><span class="line"><span class="meta prompt_"># </span><span class="language-bash">按 j ：光标下移一行</span></span><br><span class="line"><span class="meta prompt_"># </span><span class="language-bash">按 k ：光标上移一行</span></span><br><span class="line"><span class="meta prompt_"># </span><span class="language-bash">按 l ：光标右移一个字符</span></span><br><span class="line"><span class="meta prompt_"># </span><span class="language-bash">按 PageDown/Ctrl+F ：下翻一屏</span></span><br><span class="line"><span class="meta prompt_"># </span><span class="language-bash">按 PageUp/Ctrl+B ：上翻一屏</span></span><br><span class="line"><span class="meta prompt_"># </span><span class="language-bash">按 G ：移动到缓冲区最后一行</span></span><br><span class="line"><span class="meta prompt_"># </span><span class="language-bash">按 num+G ： 移动到缓冲区第 num 行</span></span><br><span class="line"><span class="meta prompt_"># </span><span class="language-bash">按 gg ：移动到缓冲区第一行</span></span><br><span class="line"><span class="meta prompt_"># </span><span class="language-bash">按 :(冒号键) ：进入命令行模式</span></span><br><span class="line"><span class="meta prompt_"></span></span><br><span class="line"><span class="meta prompt_"># </span><span class="language-bash">命令行模式中</span></span><br><span class="line"><span class="meta prompt_"># </span><span class="language-bash">按 q ：若未修改缓冲区数据，退出</span></span><br><span class="line"><span class="meta prompt_"># </span><span class="language-bash">按 q! ：取消对缓冲区的修改并退出</span></span><br><span class="line"><span class="meta prompt_"># </span><span class="language-bash">按 w filename ：将文件保存到另一文件中</span></span><br><span class="line"><span class="meta prompt_"># </span><span class="language-bash">按 wq: 保存并退出</span></span><br></pre></td></tr></table></figure>
+
+<h6 id="编辑数据"><a href="#编辑数据" class="headerlink" title="编辑数据"></a>编辑数据</h6><h6 id="复制粘贴"><a href="#复制粘贴" class="headerlink" title="复制粘贴"></a>复制粘贴</h6><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta prompt_"># </span><span class="language-bash">在使用<span class="built_in">dd</span>/dw/d$删除后可移动光标使用p粘贴实现剪切+粘贴</span></span><br><span class="line"><span class="meta prompt_"></span></span><br><span class="line"><span class="meta prompt_"># </span><span class="language-bash">复制光标所在行</span></span><br><span class="line">yd</span><br><span class="line"><span class="meta prompt_"># </span><span class="language-bash">复制单词</span></span><br><span class="line">yw</span><br><span class="line"><span class="meta prompt_"># </span><span class="language-bash">复制到行尾</span></span><br><span class="line"><span class="meta prompt_">y$</span><span class="language-bash"></span></span><br><span class="line"><span class="language-bash"><span class="comment"># 再使用p粘贴实现复制+粘贴</span></span></span><br><span class="line"><span class="meta prompt_"></span></span><br><span class="line"><span class="meta prompt_"># </span><span class="language-bash">移动光标到要开始复制的位置按下v键可以进入可视模式，将高光要被复制的区域，再使用命令 y 复制，使用命令 p 粘贴</span></span><br></pre></td></tr></table></figure>
+
+<h6 id="查找和替换"><a href="#查找和替换" class="headerlink" title="查找和替换"></a>查找和替换</h6><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta prompt_"># </span><span class="language-bash">查找字符串</span></span><br><span class="line">/string_to_search</span><br><span class="line"><span class="meta prompt_"># </span><span class="language-bash">继续查找同一个单词</span></span><br><span class="line">/</span><br><span class="line"><span class="meta prompt_"># </span><span class="language-bash">或</span></span><br><span class="line">n</span><br><span class="line"><span class="meta prompt_"></span></span><br><span class="line"><span class="meta prompt_"># </span><span class="language-bash">进入命令行模式(按冒号)可进行字符串替换</span></span><br><span class="line">:s/old_string/new_string/</span><br><span class="line"><span class="meta prompt_"># </span><span class="language-bash">👆替换第一次出现的 old_string</span></span><br><span class="line"></span><br><span class="line">:s/old_string/new_string/g</span><br><span class="line"><span class="meta prompt_"># </span><span class="language-bash">👆替换本行中所有的 old_string</span></span><br><span class="line"></span><br><span class="line">:n,ms/old_string/new_string/g</span><br><span class="line"><span class="meta prompt_"># </span><span class="language-bash">👆替换行号n和m之间的所有 old_string</span></span><br><span class="line"></span><br><span class="line">:%s/old_string/new_string/g</span><br><span class="line"><span class="meta prompt_"># </span><span class="language-bash">👆替换本文件中所有的 old_string</span></span><br><span class="line"></span><br><span class="line">:%s/old_string/new_string/gc</span><br><span class="line"><span class="meta prompt_"># </span><span class="language-bash">👆替换本文件中所有的 old_string, 且每次替换出现提示</span></span><br></pre></td></tr></table></figure>
+
+<h5 id="nano编辑器"><a href="#nano编辑器" class="headerlink" title="nano编辑器"></a>nano编辑器</h5><h5 id="通过chmod命令赋予文件属主执行文件的权限"><a href="#通过chmod命令赋予文件属主执行文件的权限" class="headerlink" title="通过chmod命令赋予文件属主执行文件的权限"></a>通过chmod命令赋予文件属主执行文件的权限</h5><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">chmod u+x file_name</span><br></pre></td></tr></table></figure>
+
+<h5 id="执行文件"><a href="#执行文件" class="headerlink" title="执行文件"></a>执行文件</h5><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">./file_name</span><br></pre></td></tr></table></figure>
+
+<h5 id="wc-命令"><a href="#wc-命令" class="headerlink" title="wc 命令"></a>wc 命令</h5><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta prompt_"># </span><span class="language-bash"><span class="built_in">wc</span>命令输出文本的行数+文本的词数+文本的字节数</span></span><br><span class="line">wc &lt; file_name</span><br></pre></td></tr></table></figure>
+
+<h5 id="重定向"><a href="#重定向" class="headerlink" title="重定向"></a>重定向</h5><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta prompt_"># </span><span class="language-bash">输出重定向(覆盖文件内容)</span></span><br><span class="line">command &gt; output_file</span><br><span class="line"><span class="meta prompt_"># </span><span class="language-bash">输出重定向(追加数据)</span></span><br><span class="line">command &gt;&gt; output_file</span><br><span class="line"><span class="meta prompt_"># </span><span class="language-bash">输入重定向</span></span><br><span class="line">command &lt; input_file</span><br><span class="line"><span class="meta prompt_"># </span><span class="language-bash">内联输入重定向(inline input redirection)</span></span><br><span class="line"><span class="meta prompt_"># </span><span class="language-bash">不需要使用文件进行重定向，只需要在命令行中指定用于输入重定向的数据</span></span><br><span class="line">command &lt;&lt; marker</span><br></pre></td></tr></table></figure>
+
+<h5 id="管道连接-piping"><a href="#管道连接-piping" class="headerlink" title="管道连接 piping"></a>管道连接 piping</h5><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta prompt_"># </span><span class="language-bash">将一个命令的输出重定向到另一个命令中</span></span><br><span class="line">command1 | command2</span><br><span class="line"><span class="meta prompt_"># </span><span class="language-bash">Linux系统会同时运行这两个命令，在系统内部将他们连接起来</span></span><br><span class="line"><span class="meta prompt_"># </span><span class="language-bash">数据传输不会用到任何中间文件和缓冲区</span></span><br></pre></td></tr></table></figure>
+
+<h5 id="数学运算"><a href="#数学运算" class="headerlink" title="数学运算"></a>数学运算</h5><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br></pre></td><td class="code"><pre><span class="line">expr 1 + 5</span><br><span class="line">expr 5 \* 2</span><br><span class="line"><span class="meta prompt_"># </span><span class="language-bash">将数学运算结果赋值给变量</span></span><br><span class="line">var1=$[1 + 5]</span><br><span class="line">var2=$[$var1 * 2]</span><br><span class="line"><span class="meta prompt_"># </span><span class="language-bash">只支持整数运算👆</span></span><br><span class="line"><span class="meta prompt_"></span></span><br><span class="line"><span class="meta prompt_"># </span><span class="language-bash">使用 bc</span></span><br><span class="line">var1=$(echo &quot;scale=4; 3.44 / 5&quot; | bc)</span><br><span class="line"><span class="meta prompt_"># </span><span class="language-bash">使用内联重定向</span></span><br><span class="line"><span class="meta prompt_"># </span><span class="language-bash">EOF文本字符串标识内联重定向数据的起止</span></span><br><span class="line">variable=$(bc &lt;&lt; EOF</span><br><span class="line">options</span><br><span class="line">statements</span><br><span class="line">expressions</span><br><span class="line">EOF</span><br><span class="line">)</span><br><span class="line"><span class="meta prompt_"># </span><span class="language-bash">例👇</span></span><br><span class="line"><span class="meta prompt_">#</span><span class="language-bash">!/bin/bash</span></span><br><span class="line">var1=10.46</span><br><span class="line">var2=43.67</span><br><span class="line">var3=33.2</span><br><span class="line">var4=71</span><br><span class="line"></span><br><span class="line">var5=$(bc &lt;&lt; EOF</span><br><span class="line">scale = 4</span><br><span class="line">a1 = ( $var1 * $var2)</span><br><span class="line">b1 = ( $var3 * $var4)</span><br><span class="line">a1 + b1</span><br><span class="line">EOF</span><br><span class="line">)</span><br></pre></td></tr></table></figure>
+
+<h5 id="退出脚本"><a href="#退出脚本" class="headerlink" title="退出脚本"></a>退出脚本</h5><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta prompt_"># </span><span class="language-bash">查看退出状态码</span></span><br><span class="line">echo $?</span><br><span class="line"><span class="meta prompt_"># </span><span class="language-bash">设置退出状态码为5</span></span><br><span class="line">exit 5</span><br></pre></td></tr></table></figure>
+
+<h5 id="结构化命令-structured-command"><a href="#结构化命令-structured-command" class="headerlink" title="结构化命令 structured command"></a>结构化命令 structured command</h5><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta prompt_"># </span><span class="language-bash">如果<span class="built_in">command</span>的退出状态码为0则执行<span class="keyword">then</span>, 否则执行<span class="keyword">else</span></span></span><br><span class="line"><span class="meta prompt_"># </span><span class="language-bash"><span class="keyword">fi</span>表示if-then语句到此结束</span></span><br><span class="line">if command</span><br><span class="line">then</span><br><span class="line">    commands</span><br><span class="line">else </span><br><span class="line">    commands</span><br><span class="line">fi</span><br><span class="line"></span><br><span class="line">if command1 </span><br><span class="line">then</span><br><span class="line">    commands </span><br><span class="line">elif command2 </span><br><span class="line">then</span><br><span class="line">    more commands </span><br><span class="line">fi</span><br><span class="line"><span class="meta prompt_"></span></span><br><span class="line"><span class="meta prompt_"># </span><span class="language-bash"><span class="built_in">test</span></span></span><br><span class="line"><span class="meta prompt_"># </span><span class="language-bash">可以判断数值比较、字符串比较、文件比较</span></span><br><span class="line">if test condition</span><br><span class="line">then</span><br><span class="line">    commands</span><br><span class="line">fi</span><br><span class="line"></span><br><span class="line">if [ condition ]</span><br><span class="line">then</span><br><span class="line">    commands</span><br><span class="line">fi</span><br></pre></td></tr></table></figure>
+
+      </div>
+      
+        <div class="prev-or-next">
+          <div class="post-foot-next">
+            
+              <a href="/2023/03/31/hello-world/" target="_self">
+                <i class="iconfont icon-chevronleft"></i>
+                <span>Prev</span>
+              </a>
+            
+          </div>
+          <div class="post-attach">
+            <span class="post-pubtime">
+              <i class="iconfont icon-updatetime mr-10" title="Update time"></i>
+              2023-03-31 18:16:49
+            </span>
+            
+                  <span class="post-tags">
+                    <i class="iconfont icon-tags mr-10" title="Tags"></i>
+                    
+                    <span class="span--tag mr-8">
+                      <a href="/tags/%E5%91%BD%E4%BB%A4%E8%A1%8C/" title="命令行">
+                        #命令行
+                      </a>
+                    </span>
+                    
+                  </span>
+              
+          </div>
+          <div class="post-foot-prev">
+            
+              <a href="/2023/03/31/Lombok/" target="_self">
+                <span>Next</span>
+                <i class="iconfont icon-chevronright"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+    </div>
+    
+  <div id="btn-catalog" class="btn-catalog">
+    <i class="iconfont icon-catalog"></i>
+  </div>
+  <div class="post-catalog hidden" id="catalog">
+    <div class="title">Contents</div>
+    <div class="catalog-content">
+      
+        <ol class="toc"><li class="toc-item toc-level-5"><a class="toc-link" href="#%E6%9F%A5%E7%9C%8B%E6%89%80%E6%9C%89%E7%94%A8%E6%88%B7"><span class="toc-text">查看所有用户</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#%E5%88%87%E6%8D%A2%E7%94%A8%E6%88%B7"><span class="toc-text">切换用户</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#%E5%9F%BA%E6%9C%AC%E5%88%97%E8%A1%A8%E5%8A%9F%E8%83%BD"><span class="toc-text">基本列表功能</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#%E5%88%9B%E5%BB%BA%E6%96%87%E4%BB%B6"><span class="toc-text">创建文件</span></a><ol class="toc-child"><li class="toc-item toc-level-6"><a class="toc-link" href="#%E4%BD%BF%E7%94%A8-cat-%E5%91%BD%E4%BB%A4%E5%88%9B%E5%BB%BA%E6%96%87%E6%9C%AC%E6%96%87%E4%BB%B6"><span class="toc-text">使用 cat 命令创建文本文件</span></a></li><li class="toc-item toc-level-6"><a class="toc-link" href="#%E4%BD%BF%E7%94%A8-touch-%E5%91%BD%E4%BB%A4%E5%88%9B%E5%BB%BA%E6%96%87%E4%BB%B6"><span class="toc-text">使用 touch 命令创建文件</span></a></li><li class="toc-item toc-level-6"><a class="toc-link" href="#%E4%BD%BF%E7%94%A8-echo-%E6%88%96-printf-%E5%9C%A8-Linux-%E4%B8%AD%E5%88%9B%E5%BB%BA%E6%96%87%E4%BB%B6"><span class="toc-text">使用 echo 或 printf 在 Linux 中创建文件</span></a></li><li class="toc-item toc-level-6"><a class="toc-link" href="#%E4%BD%BF%E7%94%A8-vi-x2F-vim-%E5%88%9B%E5%BB%BA%E6%96%87%E6%9C%AC%E6%96%87%E4%BB%B6"><span class="toc-text">使用 vi&#x2F;vim 创建文本文件</span></a></li></ol></li><li class="toc-item toc-level-5"><a class="toc-link" href="#%E5%A4%8D%E5%88%B6%E6%96%87%E4%BB%B6"><span class="toc-text">复制文件</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#%E9%93%BE%E6%8E%A5%E6%96%87%E4%BB%B6"><span class="toc-text">链接文件</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#%E9%87%8D%E5%91%BD%E5%90%8D%E6%96%87%E4%BB%B6"><span class="toc-text">重命名文件</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#%E5%88%A0%E9%99%A4%E6%96%87%E4%BB%B6"><span class="toc-text">删除文件</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#%E5%A4%84%E7%90%86%E7%9B%AE%E5%BD%95"><span class="toc-text">处理目录</span></a><ol class="toc-child"><li class="toc-item toc-level-6"><a class="toc-link" href="#%E5%88%9B%E5%BB%BA%E7%9B%AE%E5%BD%95"><span class="toc-text">创建目录</span></a></li><li class="toc-item toc-level-6"><a class="toc-link" href="#%E5%88%A0%E9%99%A4%E7%9B%AE%E5%BD%95"><span class="toc-text">删除目录</span></a></li></ol></li><li class="toc-item toc-level-5"><a class="toc-link" href="#%E6%9F%A5%E7%9C%8B%E6%96%87%E4%BB%B6%E5%86%85%E5%AE%B9"><span class="toc-text">查看文件内容</span></a><ol class="toc-child"><li class="toc-item toc-level-6"><a class="toc-link" href="#%E6%9F%A5%E7%9C%8B%E6%96%87%E4%BB%B6%E7%B1%BB%E5%9E%8B"><span class="toc-text">查看文件类型</span></a></li><li class="toc-item toc-level-6"><a class="toc-link" href="#%E6%9F%A5%E7%9C%8B%E6%95%B4%E4%B8%AA%E6%96%87%E4%BB%B6"><span class="toc-text">查看整个文件</span></a></li><li class="toc-item toc-level-6"><a class="toc-link" href="#%E6%9F%A5%E7%9C%8B%E9%83%A8%E5%88%86%E6%96%87%E4%BB%B6"><span class="toc-text">查看部分文件</span></a></li></ol></li><li class="toc-item toc-level-5"><a class="toc-link" href="#%E7%9B%91%E6%B5%8B%E7%A8%8B%E5%BA%8F"><span class="toc-text">监测程序</span></a><ol class="toc-child"><li class="toc-item toc-level-6"><a class="toc-link" href="#ps-%E6%8E%A2%E6%9F%A5%E8%BF%9B%E7%A8%8B"><span class="toc-text">ps 探查进程</span></a></li><li class="toc-item toc-level-6"><a class="toc-link" href="#top-%E5%AE%9E%E6%97%B6%E6%A3%80%E6%B5%8B%E8%BF%9B%E7%A8%8B"><span class="toc-text">top 实时检测进程</span></a></li><li class="toc-item toc-level-6"><a class="toc-link" href="#%E7%BB%93%E6%9D%9F%E8%BF%9B%E7%A8%8B"><span class="toc-text">结束进程</span></a></li></ol></li><li class="toc-item toc-level-5"><a class="toc-link" href="#%E5%A4%84%E7%90%86%E6%95%B0%E6%8D%AE%E6%96%87%E4%BB%B6"><span class="toc-text">处理数据文件</span></a><ol class="toc-child"><li class="toc-item toc-level-6"><a class="toc-link" href="#%E6%8E%92%E5%BA%8F%E6%95%B0%E6%8D%AE"><span class="toc-text">排序数据</span></a></li><li class="toc-item toc-level-6"><a class="toc-link" href="#%E6%90%9C%E7%B4%A2%E6%95%B0%E6%8D%AE"><span class="toc-text">搜索数据</span></a></li><li class="toc-item toc-level-6"><a class="toc-link" href="#%E5%8E%8B%E7%BC%A9%E6%95%B0%E6%8D%AE"><span class="toc-text">压缩数据</span></a></li><li class="toc-item toc-level-6"><a class="toc-link" href="#%E5%BD%92%E6%A1%A3%E6%95%B0%E6%8D%AE"><span class="toc-text">归档数据</span></a></li></ol></li><li class="toc-item toc-level-5"><a class="toc-link" href="#%E5%86%85%E5%BB%BA%E5%91%BD%E4%BB%A4-history"><span class="toc-text">内建命令 history</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#find-%E6%9F%A5%E6%89%BE%E6%96%87%E4%BB%B6"><span class="toc-text">find 查找文件</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#vim%E7%BC%96%E8%BE%91%E5%99%A8"><span class="toc-text">vim编辑器</span></a><ol class="toc-child"><li class="toc-item toc-level-6"><a class="toc-link" href="#%E6%89%93%E5%BC%80%E6%96%87%E4%BB%B6"><span class="toc-text">打开文件</span></a></li><li class="toc-item toc-level-6"><a class="toc-link" href="#%E7%BC%96%E8%BE%91%E6%95%B0%E6%8D%AE"><span class="toc-text">编辑数据</span></a></li><li class="toc-item toc-level-6"><a class="toc-link" href="#%E5%A4%8D%E5%88%B6%E7%B2%98%E8%B4%B4"><span class="toc-text">复制粘贴</span></a></li><li class="toc-item toc-level-6"><a class="toc-link" href="#%E6%9F%A5%E6%89%BE%E5%92%8C%E6%9B%BF%E6%8D%A2"><span class="toc-text">查找和替换</span></a></li></ol></li><li class="toc-item toc-level-5"><a class="toc-link" href="#nano%E7%BC%96%E8%BE%91%E5%99%A8"><span class="toc-text">nano编辑器</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#%E9%80%9A%E8%BF%87chmod%E5%91%BD%E4%BB%A4%E8%B5%8B%E4%BA%88%E6%96%87%E4%BB%B6%E5%B1%9E%E4%B8%BB%E6%89%A7%E8%A1%8C%E6%96%87%E4%BB%B6%E7%9A%84%E6%9D%83%E9%99%90"><span class="toc-text">通过chmod命令赋予文件属主执行文件的权限</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#%E6%89%A7%E8%A1%8C%E6%96%87%E4%BB%B6"><span class="toc-text">执行文件</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#wc-%E5%91%BD%E4%BB%A4"><span class="toc-text">wc 命令</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#%E9%87%8D%E5%AE%9A%E5%90%91"><span class="toc-text">重定向</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#%E7%AE%A1%E9%81%93%E8%BF%9E%E6%8E%A5-piping"><span class="toc-text">管道连接 piping</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#%E6%95%B0%E5%AD%A6%E8%BF%90%E7%AE%97"><span class="toc-text">数学运算</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#%E9%80%80%E5%87%BA%E8%84%9A%E6%9C%AC"><span class="toc-text">退出脚本</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#%E7%BB%93%E6%9E%84%E5%8C%96%E5%91%BD%E4%BB%A4-structured-command"><span class="toc-text">结构化命令 structured command</span></a></li></ol>
+      
+    </div>
+  </div>
+
+  
+<script src="/js/catalog.js"></script>
+
+
+
+
+    
+      <div class="comments-container">
+        
+
+
+
+
+
+
+
+      </div>
+    
+  </div>
+
+
+        
+<div class="footer">
+  <div class="social">
+    <ul>
+      
+        <li>
+          <a title="github" target="_blank" rel="noopener" href="https://github.com/zchengsite/hexo-theme-oranges">
+            <i class="iconfont icon-github"></i>
+          </a>
+        </li>
+      
+    </ul>
+  </div>
+  
+    
+    <div class="footer-more">
+      
+        <a target="_blank" rel="noopener" href="https://github.com/zchengsite/hexo-theme-oranges">Copyright © 2023 Oranges</a>
+        
+    </div>
+  
+    
+    <div class="footer-more">
+      
+        <a target="_blank" rel="noopener" href="https://github.com/zchengsite/hexo-theme-oranges">Theme by Oranges | Powered by Hexo</a>
+        
+    </div>
+  
+  
+</div>
+
+      </div>
+
+      <div class="tools-bar">
+        <div class="back-to-top tools-bar-item hidden">
+  <a href="javascript: void(0)">
+    <i class="iconfont icon-chevronup"></i>
+  </a>
+</div>
+
+
+<script src="/js/backtotop.js"></script>
+
+
+
+        
+  <div class="search-icon tools-bar-item" id="search-icon">
+    <a href="javascript: void(0)">
+      <i class="iconfont icon-search"></i>
+    </a>
+  </div>
+
+  <div class="search-overlay hidden">
+    <div class="search-content" tabindex="0">
+      <div class="search-title">
+        <span class="search-icon-input">
+          <a href="javascript: void(0)">
+            <i class="iconfont icon-search"></i>
+          </a>
+        </span>
+        
+          <input type="text" class="search-input" id="search-input" placeholder="Search...">
+        
+        <span class="search-close-icon" id="search-close-icon">
+          <a href="javascript: void(0)">
+            <i class="iconfont icon-close"></i>
+          </a>
+        </span>
+      </div>
+      <div class="search-result" id="search-result"></div>
+    </div>
+  </div>
+
+  <script type="text/javascript">
+    var inputArea = document.querySelector("#search-input")
+    var searchOverlayArea = document.querySelector(".search-overlay")
+
+    inputArea.onclick = function() {
+      getSearchFile()
+      this.onclick = null
+    }
+
+    inputArea.onkeydown = function() {
+      if(event.keyCode == 13)
+        return false
+    }
+
+    function openOrHideSearchContent() {
+      let isHidden = searchOverlayArea.classList.contains('hidden')
+      if (isHidden) {
+        searchOverlayArea.classList.remove('hidden')
+        document.body.classList.add('hidden')
+        // inputArea.focus()
+      } else {
+        searchOverlayArea.classList.add('hidden')
+        document.body.classList.remove('hidden')
+      }
+    }
+
+    function blurSearchContent(e) {
+      if (e.target === searchOverlayArea) {
+        openOrHideSearchContent()
+      }
+    }
+
+    document.querySelector("#search-icon").addEventListener("click", openOrHideSearchContent, false)
+    document.querySelector("#search-close-icon").addEventListener("click", openOrHideSearchContent, false)
+    searchOverlayArea.addEventListener("click", blurSearchContent, false)
+
+    var searchFunc = function (path, search_id, content_id) {
+      'use strict';
+      var $input = document.getElementById(search_id);
+      var $resultContent = document.getElementById(content_id);
+      $resultContent.innerHTML = "<ul><span class='local-search-empty'>First search, index file loading, please wait...<span></ul>";
+      $.ajax({
+        // 0x01. load xml file
+        url: path,
+        dataType: "xml",
+        success: function (xmlResponse) {
+          // 0x02. parse xml file
+          var datas = $("entry", xmlResponse).map(function () {
+            return {
+              title: $("title", this).text(),
+              content: $("content", this).text(),
+              url: $("url", this).text()
+            };
+          }).get();
+          $resultContent.innerHTML = "";
+
+          $input.addEventListener('input', function () {
+            // 0x03. parse query to keywords list
+            var str = '<ul class=\"search-result-list\">';
+            var keywords = this.value.trim().toLowerCase().split(/[\s\-]+/);
+            $resultContent.innerHTML = "";
+            if (this.value.trim().length <= 0) {
+              return;
+            }
+            // 0x04. perform local searching
+            datas.forEach(function (data) {
+              var isMatch = true;
+              var content_index = [];
+              if (!data.title || data.title.trim() === '') {
+                data.title = "Untitled";
+              }
+              var orig_data_title = data.title.trim();
+              var data_title = orig_data_title.toLowerCase();
+              var orig_data_content = data.content.trim().replace(/<[^>]+>/g, "");
+              var data_content = orig_data_content.toLowerCase();
+              var data_url = data.url;
+              var index_title = -1;
+              var index_content = -1;
+              var first_occur = -1;
+              // only match artiles with not empty contents
+              if (data_content !== '') {
+                keywords.forEach(function (keyword, i) {
+                  index_title = data_title.indexOf(keyword);
+                  index_content = data_content.indexOf(keyword);
+
+                  if (index_title < 0 && index_content < 0) {
+                    isMatch = false;
+                  } else {
+                    if (index_content < 0) {
+                      index_content = 0;
+                    }
+                    if (i == 0) {
+                      first_occur = index_content;
+                    }
+                    // content_index.push({index_content:index_content, keyword_len:keyword_len});
+                  }
+                });
+              } else {
+                isMatch = false;
+              }
+              // 0x05. show search results
+              if (isMatch) {
+                str += "<li><a href='" + data_url + "' class='search-result-title'>" + orig_data_title + "</a>";
+                var content = orig_data_content;
+                if (first_occur >= 0) {
+                  // cut out 100 characters
+                  var start = first_occur - 20;
+                  var end = first_occur + 80;
+
+                  if (start < 0) {
+                    start = 0;
+                  }
+
+                  if (start == 0) {
+                    end = 100;
+                  }
+
+                  if (end > content.length) {
+                    end = content.length;
+                  }
+
+                  var match_content = content.substr(start, end);
+
+                  // highlight all keywords
+                  keywords.forEach(function (keyword) {
+                    var regS = new RegExp(keyword, "gi");
+                    match_content = match_content.replace(regS, "<span class=\"search-keyword\">" + keyword + "</span>");
+                  });
+
+                  str += "<p class=\"search-result-abstract\">" + match_content + "...</p>"
+                }
+                str += "</li>";
+              }
+            });
+            str += "</ul>";
+            if (str.indexOf('<li>') === -1) {
+              return $resultContent.innerHTML = "<ul><span class='local-search-empty'>No result<span></ul>";
+            }
+            $resultContent.innerHTML = str;
+          });
+        },
+        error: function(xhr, status, error) {
+          $resultContent.innerHTML = ""
+          if (xhr.status === 404) {
+            $resultContent.innerHTML = "<ul><span class='local-search-empty'>The search.xml file was not found, please refer to：<a href='https://github.com/zchengsite/hexo-theme-oranges#configuration' target='_black'>configuration</a><span></ul>";
+          } else {
+            $resultContent.innerHTML = "<ul><span class='local-search-empty'>The request failed, Try to refresh the page or try again later.<span></ul>";
+          }
+        }
+      });
+      $(document).on('click', '#search-close-icon', function() {
+        $('#search-input').val('');
+        $('#search-result').html('');
+      });
+    }
+
+    var getSearchFile = function() {
+        var path = "/search.xml";
+        searchFunc(path, 'search-input', 'search-result');
+    }
+  </script>
+
+
+
+
+        
+  <div class="tools-bar-item theme-icon" id="switch-color-scheme">
+    <a href="javascript: void(0)">
+      <i id="theme-icon" class="iconfont icon-moon"></i>
+    </a>
+  </div>
+
+  
+<script src="/js/colorscheme.js"></script>
+
+
+
+
+
+        
+  
+    <div class="share-icon tools-bar-item">
+      <a href="javascript: void(0)" id="share-icon">
+        <i class="iconfont iconshare"></i>
+      </a>
+      <div class="share-content hidden">
+        
+          <a class="share-item" href="https://twitter.com/intent/tweet?text=' + Linux%E5%91%BD%E4%BB%A4%E8%A1%8C%E4%B8%8Eshell%E8%84%9A%E6%9C%AC%E7%BC%96%E7%A8%8B + '&url=' + http%3A%2F%2Fexample.com%2F2023%2F03%2F31%2FLinux%25E5%2591%25BD%25E4%25BB%25A4%25E8%25A1%258C%25E4%25B8%258Eshell%25E8%2584%259A%25E6%259C%25AC%25E7%25BC%2596%25E7%25A8%258B%2F + '" target="_blank" title="Twitter">
+            <i class="iconfont icon-twitter"></i>
+          </a>
+        
+        
+          <a class="share-item" href="https://www.facebook.com/sharer.php?u=http://example.com/2023/03/31/Linux%E5%91%BD%E4%BB%A4%E8%A1%8C%E4%B8%8Eshell%E8%84%9A%E6%9C%AC%E7%BC%96%E7%A8%8B/" target="_blank" title="Facebook">
+            <i class="iconfont icon-facebooksquare"></i>
+          </a>
+        
+      </div>
+    </div>
+  
+  
+<script src="/js/shares.js"></script>
+
+
+
+      </div>
+    </div>
+  </body>
+</html>

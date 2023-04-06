@@ -11,7 +11,7 @@
   
   <title>
     
-      archive_a: 2023 
+      Lombok 
       
       
       |
@@ -106,77 +106,152 @@
 
 
       <div class="flex-container">
-        <!-- 归档页，展示本站所有文章，按照年份降序归类，url形式：https://yoursite/archives/ -->
+        <!-- 文章详情页，展示文章具体内容，url形式：https://yoursite/文章标题/ -->
+<!-- 同时为「标签tag」，「朋友friend」，「分类categories」，「关于about」页面的承载页面，具体展示取决于page.type -->
 
-<!-- last: 按年份把文章分组，当前遍历到的年份 -->
-<!-- now: 当前遍历到的文章的发布年份 -->
 
-<div class="container archives">
-  <div class="post-list">
-    
-        <!-- 后续文章的发布年份呈现 -->
-        <div class="content-title">
-          <h2>
-            <span>2023</span>
-          </h2>
+  <!-- LaTex Display -->
+
+  
+    <script async type="text/javascript" src="/plugins/mathjax/tex-chtml.js"></script>
+  
+  <script>
+    MathJax = {
+      tex: {
+        inlineMath: [['$', '$'], ['\\(', '\\)']]
+      }
+    }
+  </script>
+
+
+
+
+
+  <!-- clipboard -->
+
+  
+    <script async type="text/javascript" src="/plugins/clipboard.min.js"></script>
+  
+  
+<script src="/js/codeCopy.js"></script>
+
+
+
+
+
+
+
+  
+
+  
+
+  
+
+  
+  <!-- 文章内容页 url形式：https://yoursite/文章标题/ -->
+  <div class="container post-details" id="post-details">
+    <div class="post-content">
+      <div class="post-title">Lombok</div>
+      <div class="post-attach">
+        <span class="post-pubtime">
+          <i class="iconfont icon-updatetime mr-10" title="Update time"></i>
+          2023-03-31 18:18:40
+        </span>
+        
+              <span class="post-tags">
+                <i class="iconfont icon-tags mr-10" title="Tags"></i>
+                
+                <span class="span--tag mr-8">
+                  <a href="/tags/lombok/" title="lombok">
+                    #lombok
+                  </a>
+                </span>
+                
+              </span>
+          
+      </div>
+      <div class="markdown-body">
+        <h4 id="lombok"><a href="#lombok" class="headerlink" title="lombok"></a>lombok</h4><ul>
+<li><code>@Data</code> 编译时自动加入Getter, Setter, equals, canEqual, hasCode, toString等方法</li>
+<li><code>@AllArgsConstructor</code> 添加一个构造函数，该构造函数含有所有已声明字段属性参数</li>
+<li><code>@NoArgsConstructor</code> 创建一个无参构造函数</li>
+<li><code>@Builder</code> ❓TODO</li>
+</ul>
+<p>eclipse安装lombok后不能正常打开.java文件<br>解决方法:卸掉lombok装最新版本就好了QAQ</p>
+
+      </div>
+      
+        <div class="prev-or-next">
+          <div class="post-foot-next">
+            
+              <a href="/2023/03/31/Linux%E5%91%BD%E4%BB%A4%E8%A1%8C%E4%B8%8Eshell%E8%84%9A%E6%9C%AC%E7%BC%96%E7%A8%8B/" target="_self">
+                <i class="iconfont icon-chevronleft"></i>
+                <span>Prev</span>
+              </a>
+            
+          </div>
+          <div class="post-attach">
+            <span class="post-pubtime">
+              <i class="iconfont icon-updatetime mr-10" title="Update time"></i>
+              2023-03-31 18:18:40
+            </span>
+            
+                  <span class="post-tags">
+                    <i class="iconfont icon-tags mr-10" title="Tags"></i>
+                    
+                    <span class="span--tag mr-8">
+                      <a href="/tags/lombok/" title="lombok">
+                        #lombok
+                      </a>
+                    </span>
+                    
+                  </span>
+              
+          </div>
+          <div class="post-foot-prev">
+            
+              <a href="/2023/03/31/Mina%E7%BD%91%E7%BB%9C%E9%80%9A%E4%BF%A1/" target="_self">
+                <span>Next</span>
+                <i class="iconfont icon-chevronright"></i>
+              </a>
+            
+          </div>
         </div>
       
-      <div class="post-item" title="宇宙探索编辑部">
-        <div class="time-m-d">04-06</div>
-        <div class="title">
-          <a href="/2023/04/06/%E5%AE%87%E5%AE%99%E6%8E%A2%E7%B4%A2%E7%BC%96%E8%BE%91%E9%83%A8/">
-            <span>宇宙探索编辑部</span>
-          </a>
-        </div>
-      </div>
+    </div>
     
-      <div class="post-item" title="逃逸分析 Escape Analysis">
-        <div class="time-m-d">03-31</div>
-        <div class="title">
-          <a href="/2023/03/31/%E9%80%83%E9%80%B8%E5%88%86%E6%9E%90-Escape-Analysis/">
-            <span>逃逸分析 Escape Analysis</span>
-          </a>
-        </div>
-      </div>
+  <div id="btn-catalog" class="btn-catalog">
+    <i class="iconfont icon-catalog"></i>
+  </div>
+  <div class="post-catalog hidden" id="catalog">
+    <div class="title">Contents</div>
+    <div class="catalog-content">
+      
+        <ol class="toc"><li class="toc-item toc-level-4"><a class="toc-link" href="#lombok"><span class="toc-text">lombok</span></a></li></ol>
+      
+    </div>
+  </div>
+
+  
+<script src="/js/catalog.js"></script>
+
+
+
+
     
-      <div class="post-item" title="Mina网络通信">
-        <div class="time-m-d">03-31</div>
-        <div class="title">
-          <a href="/2023/03/31/Mina%E7%BD%91%E7%BB%9C%E9%80%9A%E4%BF%A1/">
-            <span>Mina网络通信</span>
-          </a>
-        </div>
-      </div>
-    
-      <div class="post-item" title="Lombok">
-        <div class="time-m-d">03-31</div>
-        <div class="title">
-          <a href="/2023/03/31/Lombok/">
-            <span>Lombok</span>
-          </a>
-        </div>
-      </div>
-    
-      <div class="post-item" title="Linux命令行与shell脚本编程">
-        <div class="time-m-d">03-31</div>
-        <div class="title">
-          <a href="/2023/03/31/Linux%E5%91%BD%E4%BB%A4%E8%A1%8C%E4%B8%8Eshell%E8%84%9A%E6%9C%AC%E7%BC%96%E7%A8%8B/">
-            <span>Linux命令行与shell脚本编程</span>
-          </a>
-        </div>
-      </div>
-    
-      <div class="post-item" title="Hello World">
-        <div class="time-m-d">03-31</div>
-        <div class="title">
-          <a href="/2023/03/31/hello-world/">
-            <span>Hello World</span>
-          </a>
-        </div>
+      <div class="comments-container">
+        
+
+
+
+
+
+
+
       </div>
     
   </div>
-</div>
+
 
         
 <div class="footer">
@@ -431,6 +506,24 @@
 
 
         
+  
+    <div class="share-icon tools-bar-item">
+      <a href="javascript: void(0)" id="share-icon">
+        <i class="iconfont iconshare"></i>
+      </a>
+      <div class="share-content hidden">
+        
+          <a class="share-item" href="https://twitter.com/intent/tweet?text=' + Lombok + '&url=' + http%3A%2F%2Fexample.com%2F2023%2F03%2F31%2FLombok%2F + '" target="_blank" title="Twitter">
+            <i class="iconfont icon-twitter"></i>
+          </a>
+        
+        
+          <a class="share-item" href="https://www.facebook.com/sharer.php?u=http://example.com/2023/03/31/Lombok/" target="_blank" title="Facebook">
+            <i class="iconfont icon-facebooksquare"></i>
+          </a>
+        
+      </div>
+    </div>
   
   
 <script src="/js/shares.js"></script>

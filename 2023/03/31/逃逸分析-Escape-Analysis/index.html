@@ -11,7 +11,7 @@
   
   <title>
     
-      archive_a: 2023 
+      逃逸分析 Escape Analysis 
       
       
       |
@@ -106,77 +106,189 @@
 
 
       <div class="flex-container">
-        <!-- 归档页，展示本站所有文章，按照年份降序归类，url形式：https://yoursite/archives/ -->
+        <!-- 文章详情页，展示文章具体内容，url形式：https://yoursite/文章标题/ -->
+<!-- 同时为「标签tag」，「朋友friend」，「分类categories」，「关于about」页面的承载页面，具体展示取决于page.type -->
 
-<!-- last: 按年份把文章分组，当前遍历到的年份 -->
-<!-- now: 当前遍历到的文章的发布年份 -->
 
-<div class="container archives">
-  <div class="post-list">
-    
-        <!-- 后续文章的发布年份呈现 -->
-        <div class="content-title">
-          <h2>
-            <span>2023</span>
-          </h2>
+  <!-- LaTex Display -->
+
+  
+    <script async type="text/javascript" src="/plugins/mathjax/tex-chtml.js"></script>
+  
+  <script>
+    MathJax = {
+      tex: {
+        inlineMath: [['$', '$'], ['\\(', '\\)']]
+      }
+    }
+  </script>
+
+
+
+
+
+  <!-- clipboard -->
+
+  
+    <script async type="text/javascript" src="/plugins/clipboard.min.js"></script>
+  
+  
+<script src="/js/codeCopy.js"></script>
+
+
+
+
+
+
+
+  
+
+  
+
+  
+
+  
+  <!-- 文章内容页 url形式：https://yoursite/文章标题/ -->
+  <div class="container post-details" id="post-details">
+    <div class="post-content">
+      <div class="post-title">逃逸分析 Escape Analysis</div>
+      <div class="post-attach">
+        <span class="post-pubtime">
+          <i class="iconfont icon-updatetime mr-10" title="Update time"></i>
+          2023-03-31 18:19:51
+        </span>
+        
+              <span class="post-tags">
+                <i class="iconfont icon-tags mr-10" title="Tags"></i>
+                
+                <span class="span--tag mr-8">
+                  <a href="/tags/Java/" title="Java">
+                    #Java
+                  </a>
+                </span>
+                
+              </span>
+          
+      </div>
+      <div class="markdown-body">
+        <h4 id="逃逸分析-Escape-Analysis"><a href="#逃逸分析-Escape-Analysis" class="headerlink" title="逃逸分析 Escape Analysis"></a>逃逸分析 Escape Analysis</h4><p>一种确定指针动态范围的静态分析，它可以分析在程序的哪些地方可以访问到指针。</p>
+<p>不是直接优化代码的手段，而是为其他优化手段提供依据的分析技术。</p>
+<p>逃逸分析的基本行为：分析对象作用域。当一个对象在方法中被定义后，他可能被外部方法所引用，例如作为调用参数传递到其他方法中去，称为方法逃逸。还可能被外部线程访问到，譬如赋值给类变量或可以在其他线程中访问的实例变量，称为线程逃逸。</p>
+<p>对象的逃逸状态：</p>
+<ul>
+<li><p><strong>全局逃逸 Global Escape：</strong> 对象的引用掏出了方法或者线程，例如对象的引用被赋值给一个静态变量或对象的引用被作为返回值传递给调用方法。</p>
+</li>
+<li><p><strong>参数逃逸 Arg Escape：</strong> 对象被作为方法参数传递或被参数引用，通过分析被调用方法的字节码来确定。</p>
+</li>
+<li><p><strong>没有逃逸 No Escape：</strong> 没有发生逃逸。</p>
+</li>
+</ul>
+<p>通过逃逸分析，如果能确认一个对象没有发生逃逸或只有参数逃逸，就可以进行一些优化：</p>
+<ul>
+<li><p><strong>栈上分配 Stack Allocation：</strong> JVM通过逃逸分析，分析出对象的适用范围，就可能将对象在栈上进行分配，栈分配可以快速在栈帧上创建和销毁对象，这些对象会随着方法的结束而自动销毁，可以减少JVM进行垃圾回收的压力。</p>
+</li>
+<li><p><strong>标量替换 Scalar Replacement：</strong> JVM通过逃逸分析，确定要将对象分配到栈上时，即时编译可以将对象打散，将对象替换为一个个很小的局部变量，这个打散的过程叫做标量替换，方便在栈上进行分配。即程序真正执行的时候可能不创建这个对象，而是改为直接创建他的若干个被这个方法使用到的成员变量来代替。</p>
+<p>标量（Scalar）是指一个数据已经无法再分解成更小的数据来表示了，例如原始数据。可以继续分解的数据称为聚合量（Aggregate）。</p>
+</li>
+<li><p><strong>同步消除 Synchronization Elimination：</strong> 通过JVM逃逸分析，发现一个对象只能被一个线程访问，则访问这个对象时可以不加同步锁，如果程序中用了 synchronized 锁，JVM会将该锁消除。（仅针对 synchronized 锁，对于 Lock 锁无法消除）。</p>
+</li>
+</ul>
+<p>设置JVM参数：</p>
+<ul>
+<li><p><code>+DoEscapeAnalysis</code> 开启逃逸分析</p>
+</li>
+<li><p><code>-DoEscapeAnalysis</code> 关闭逃逸分析</p>
+</li>
+<li><p><code>+PrintEscapeAnalysis</code> 查看分析结果</p>
+</li>
+<li><p><code>+EliminateAllocations</code> 开启标量替换</p>
+</li>
+<li><p><code>+PrintEliminateAllocations</code> 查看标量替换情况</p>
+</li>
+<li><p><code>+EliminateLocks</code> 开启同步消除</p>
+</li>
+</ul>
+<p>参考：</p>
+<ul>
+<li><p><a target="_blank" rel="noopener" href="https://www.51cto.com/article/685667.html">一篇学会逃逸分析，yyds！-逃逸分析技术</a></p>
+</li>
+<li><p><a target="_blank" rel="noopener" href="https://www.jianshu.com/p/7f8b87fba068">逃逸分析 - 简书</a></p>
+</li>
+</ul>
+
+      </div>
+      
+        <div class="prev-or-next">
+          <div class="post-foot-next">
+            
+              <a href="/2023/03/31/Mina%E7%BD%91%E7%BB%9C%E9%80%9A%E4%BF%A1/" target="_self">
+                <i class="iconfont icon-chevronleft"></i>
+                <span>Prev</span>
+              </a>
+            
+          </div>
+          <div class="post-attach">
+            <span class="post-pubtime">
+              <i class="iconfont icon-updatetime mr-10" title="Update time"></i>
+              2023-03-31 18:19:51
+            </span>
+            
+                  <span class="post-tags">
+                    <i class="iconfont icon-tags mr-10" title="Tags"></i>
+                    
+                    <span class="span--tag mr-8">
+                      <a href="/tags/Java/" title="Java">
+                        #Java
+                      </a>
+                    </span>
+                    
+                  </span>
+              
+          </div>
+          <div class="post-foot-prev">
+            
+              <a href="/2023/04/06/%E5%AE%87%E5%AE%99%E6%8E%A2%E7%B4%A2%E7%BC%96%E8%BE%91%E9%83%A8/" target="_self">
+                <span>Next</span>
+                <i class="iconfont icon-chevronright"></i>
+              </a>
+            
+          </div>
         </div>
       
-      <div class="post-item" title="宇宙探索编辑部">
-        <div class="time-m-d">04-06</div>
-        <div class="title">
-          <a href="/2023/04/06/%E5%AE%87%E5%AE%99%E6%8E%A2%E7%B4%A2%E7%BC%96%E8%BE%91%E9%83%A8/">
-            <span>宇宙探索编辑部</span>
-          </a>
-        </div>
-      </div>
+    </div>
     
-      <div class="post-item" title="逃逸分析 Escape Analysis">
-        <div class="time-m-d">03-31</div>
-        <div class="title">
-          <a href="/2023/03/31/%E9%80%83%E9%80%B8%E5%88%86%E6%9E%90-Escape-Analysis/">
-            <span>逃逸分析 Escape Analysis</span>
-          </a>
-        </div>
-      </div>
+  <div id="btn-catalog" class="btn-catalog">
+    <i class="iconfont icon-catalog"></i>
+  </div>
+  <div class="post-catalog hidden" id="catalog">
+    <div class="title">Contents</div>
+    <div class="catalog-content">
+      
+        <ol class="toc"><li class="toc-item toc-level-4"><a class="toc-link" href="#%E9%80%83%E9%80%B8%E5%88%86%E6%9E%90-Escape-Analysis"><span class="toc-text">逃逸分析 Escape Analysis</span></a></li></ol>
+      
+    </div>
+  </div>
+
+  
+<script src="/js/catalog.js"></script>
+
+
+
+
     
-      <div class="post-item" title="Mina网络通信">
-        <div class="time-m-d">03-31</div>
-        <div class="title">
-          <a href="/2023/03/31/Mina%E7%BD%91%E7%BB%9C%E9%80%9A%E4%BF%A1/">
-            <span>Mina网络通信</span>
-          </a>
-        </div>
-      </div>
-    
-      <div class="post-item" title="Lombok">
-        <div class="time-m-d">03-31</div>
-        <div class="title">
-          <a href="/2023/03/31/Lombok/">
-            <span>Lombok</span>
-          </a>
-        </div>
-      </div>
-    
-      <div class="post-item" title="Linux命令行与shell脚本编程">
-        <div class="time-m-d">03-31</div>
-        <div class="title">
-          <a href="/2023/03/31/Linux%E5%91%BD%E4%BB%A4%E8%A1%8C%E4%B8%8Eshell%E8%84%9A%E6%9C%AC%E7%BC%96%E7%A8%8B/">
-            <span>Linux命令行与shell脚本编程</span>
-          </a>
-        </div>
-      </div>
-    
-      <div class="post-item" title="Hello World">
-        <div class="time-m-d">03-31</div>
-        <div class="title">
-          <a href="/2023/03/31/hello-world/">
-            <span>Hello World</span>
-          </a>
-        </div>
+      <div class="comments-container">
+        
+
+
+
+
+
+
+
       </div>
     
   </div>
-</div>
+
 
         
 <div class="footer">
@@ -431,6 +543,24 @@
 
 
         
+  
+    <div class="share-icon tools-bar-item">
+      <a href="javascript: void(0)" id="share-icon">
+        <i class="iconfont iconshare"></i>
+      </a>
+      <div class="share-content hidden">
+        
+          <a class="share-item" href="https://twitter.com/intent/tweet?text=' + %E9%80%83%E9%80%B8%E5%88%86%E6%9E%90%20Escape%20Analysis + '&url=' + http%3A%2F%2Fexample.com%2F2023%2F03%2F31%2F%25E9%2580%2583%25E9%2580%25B8%25E5%2588%2586%25E6%259E%2590-Escape-Analysis%2F + '" target="_blank" title="Twitter">
+            <i class="iconfont icon-twitter"></i>
+          </a>
+        
+        
+          <a class="share-item" href="https://www.facebook.com/sharer.php?u=http://example.com/2023/03/31/%E9%80%83%E9%80%B8%E5%88%86%E6%9E%90-Escape-Analysis/" target="_blank" title="Facebook">
+            <i class="iconfont icon-facebooksquare"></i>
+          </a>
+        
+      </div>
+    </div>
   
   
 <script src="/js/shares.js"></script>
