@@ -11,7 +11,7 @@
   
   <title>
     
-      Archives 
+      JAR文件 
       
       
       |
@@ -106,104 +106,162 @@
 
 
       <div class="flex-container">
-        <!-- 归档页，展示本站所有文章，按照年份降序归类，url形式：https://yoursite/archives/ -->
+        <!-- 文章详情页，展示文章具体内容，url形式：https://yoursite/文章标题/ -->
+<!-- 同时为「标签tag」，「朋友friend」，「分类categories」，「关于about」页面的承载页面，具体展示取决于page.type -->
 
-<!-- last: 按年份把文章分组，当前遍历到的年份 -->
-<!-- now: 当前遍历到的文章的发布年份 -->
 
-<div class="container archives">
-  <div class="post-list">
-    
-        <!-- 后续文章的发布年份呈现 -->
-        <div class="content-title">
-          <h2>
-            <span>2023</span>
-          </h2>
+  <!-- LaTex Display -->
+
+  
+    <script async type="text/javascript" src="/plugins/mathjax/tex-chtml.js"></script>
+  
+  <script>
+    MathJax = {
+      tex: {
+        inlineMath: [['$', '$'], ['\\(', '\\)']]
+      }
+    }
+  </script>
+
+
+
+
+
+  <!-- clipboard -->
+
+  
+    <script async type="text/javascript" src="/plugins/clipboard.min.js"></script>
+  
+  
+<script src="/js/codeCopy.js"></script>
+
+
+
+
+
+
+
+  
+
+  
+
+  
+
+  
+  <!-- 文章内容页 url形式：https://yoursite/文章标题/ -->
+  <div class="container post-details" id="post-details">
+    <div class="post-content">
+      <div class="post-title">JAR文件</div>
+      <div class="post-attach">
+        <span class="post-pubtime">
+          <i class="iconfont icon-updatetime mr-10" title="Update time"></i>
+          2023-04-11 10:04:14
+        </span>
+        
+              <span class="post-tags">
+                <i class="iconfont icon-tags mr-10" title="Tags"></i>
+                
+                <span class="span--tag mr-8">
+                  <a href="/tags/Java/" title="Java">
+                    #Java
+                  </a>
+                </span>
+                
+              </span>
+          
+      </div>
+      <div class="markdown-body">
+        <p>JAR文件全称 Java Archive File，是一种压缩格式，包含了一个在生成JAR包时系统自动创建的，名为 <code>META-INF/MAANIFEST.MF</code>的清单文件。</p>
+<p>JAR包体积小，安全，可移植性强，封装。使用时只需要在CLASSPATH中添加这个JAR包，JVM就可以解析这个包。</p>
+<h5 id="jar命令使用"><a href="#jar命令使用" class="headerlink" title="jar命令使用"></a>jar命令使用</h5><ul>
+<li><p><code>jar cvf test.java test</code></p>
+<p>参数<code>c</code>表示创建，参数<code>v</code>表示显示创建过程文件的详细信息，该命令将test目录下的所有文件打包成一个test.jar文件，如果已存在则覆盖</p>
+</li>
+<li><p><code>jar tvf test.jar</code></p>
+<p>参数<code>t</code>表示显示列表，参数<code>v</code>表示显示文件的详细信息，该命令用于查看JAR文件内容列表</p>
+</li>
+<li><p><code>jar xvf test.jar</code></p>
+<p>该命令将test.jar文件解压到当前的目录下</p>
+</li>
+<li><p><code>jar uvf test.jar Hello.class</code></p>
+<p>该命令用于更新JAR文件，若已存在则替换，不存在则添加</p>
+</li>
+</ul>
+<p>👀<a target="_blank" rel="noopener" href="http://www.imooc.com/article/292350">http://www.imooc.com/article/292350</a></p>
+
+      </div>
+      
+        <div class="prev-or-next">
+          <div class="post-foot-next">
+            
+              <a href="/2023/04/11/Servlet%E7%9B%B8%E5%85%B3/" target="_self">
+                <i class="iconfont icon-chevronleft"></i>
+                <span>Prev</span>
+              </a>
+            
+          </div>
+          <div class="post-attach">
+            <span class="post-pubtime">
+              <i class="iconfont icon-updatetime mr-10" title="Update time"></i>
+              2023-04-11 10:04:14
+            </span>
+            
+                  <span class="post-tags">
+                    <i class="iconfont icon-tags mr-10" title="Tags"></i>
+                    
+                    <span class="span--tag mr-8">
+                      <a href="/tags/Java/" title="Java">
+                        #Java
+                      </a>
+                    </span>
+                    
+                  </span>
+              
+          </div>
+          <div class="post-foot-prev">
+            
+              <a href="/2023/04/11/Java%E7%B1%BB%E7%9B%B8%E5%85%B3/" target="_self">
+                <span>Next</span>
+                <i class="iconfont icon-chevronright"></i>
+              </a>
+            
+          </div>
         </div>
       
-      <div class="post-item" title="Java类相关">
-        <div class="time-m-d">04-11</div>
-        <div class="title">
-          <a href="/2023/04/11/Java%E7%B1%BB%E7%9B%B8%E5%85%B3/">
-            <span>Java类相关</span>
-          </a>
-        </div>
-      </div>
+    </div>
     
-      <div class="post-item" title="JAR文件">
-        <div class="time-m-d">04-11</div>
-        <div class="title">
-          <a href="/2023/04/11/JAR%E6%96%87%E4%BB%B6/">
-            <span>JAR文件</span>
-          </a>
-        </div>
-      </div>
+  <div id="btn-catalog" class="btn-catalog">
+    <i class="iconfont icon-catalog"></i>
+  </div>
+  <div class="post-catalog hidden" id="catalog">
+    <div class="title">Contents</div>
+    <div class="catalog-content">
+      
+        <ol class="toc"><li class="toc-item toc-level-5"><a class="toc-link" href="#jar%E5%91%BD%E4%BB%A4%E4%BD%BF%E7%94%A8"><span class="toc-text">jar命令使用</span></a></li></ol>
+      
+    </div>
+  </div>
+
+  
+<script src="/js/catalog.js"></script>
+
+
+
+
     
-      <div class="post-item" title="Servlet相关">
-        <div class="time-m-d">04-11</div>
-        <div class="title">
-          <a href="/2023/04/11/Servlet%E7%9B%B8%E5%85%B3/">
-            <span>Servlet相关</span>
-          </a>
-        </div>
-      </div>
-    
-      <div class="post-item" title="🎦宇宙探索编辑部">
-        <div class="time-m-d">04-06</div>
-        <div class="title">
-          <a href="/2023/04/06/%E5%AE%87%E5%AE%99%E6%8E%A2%E7%B4%A2%E7%BC%96%E8%BE%91%E9%83%A8/">
-            <span>🎦宇宙探索编辑部</span>
-          </a>
-        </div>
-      </div>
-    
-      <div class="post-item" title="逃逸分析 Escape Analysis">
-        <div class="time-m-d">03-31</div>
-        <div class="title">
-          <a href="/2023/03/31/%E9%80%83%E9%80%B8%E5%88%86%E6%9E%90-Escape-Analysis/">
-            <span>逃逸分析 Escape Analysis</span>
-          </a>
-        </div>
-      </div>
-    
-      <div class="post-item" title="Mina网络通信">
-        <div class="time-m-d">03-31</div>
-        <div class="title">
-          <a href="/2023/03/31/Mina%E7%BD%91%E7%BB%9C%E9%80%9A%E4%BF%A1/">
-            <span>Mina网络通信</span>
-          </a>
-        </div>
-      </div>
-    
-      <div class="post-item" title="Lombok">
-        <div class="time-m-d">03-31</div>
-        <div class="title">
-          <a href="/2023/03/31/Lombok/">
-            <span>Lombok</span>
-          </a>
-        </div>
-      </div>
-    
-      <div class="post-item" title="Linux命令行与shell脚本编程">
-        <div class="time-m-d">03-31</div>
-        <div class="title">
-          <a href="/2023/03/31/Linux%E5%91%BD%E4%BB%A4%E8%A1%8C%E4%B8%8Eshell%E8%84%9A%E6%9C%AC%E7%BC%96%E7%A8%8B/">
-            <span>Linux命令行与shell脚本编程</span>
-          </a>
-        </div>
-      </div>
-    
-      <div class="post-item" title="Hello World">
-        <div class="time-m-d">03-31</div>
-        <div class="title">
-          <a href="/2023/03/31/hello-world/">
-            <span>Hello World</span>
-          </a>
-        </div>
+      <div class="comments-container">
+        
+
+
+
+
+
+
+
       </div>
     
   </div>
-</div>
+
 
         
 <div class="footer">
@@ -458,6 +516,24 @@
 
 
         
+  
+    <div class="share-icon tools-bar-item">
+      <a href="javascript: void(0)" id="share-icon">
+        <i class="iconfont iconshare"></i>
+      </a>
+      <div class="share-content hidden">
+        
+          <a class="share-item" href="https://twitter.com/intent/tweet?text=' + JAR%E6%96%87%E4%BB%B6 + '&url=' + http%3A%2F%2Fexample.com%2F2023%2F04%2F11%2FJAR%25E6%2596%2587%25E4%25BB%25B6%2F + '" target="_blank" title="Twitter">
+            <i class="iconfont icon-twitter"></i>
+          </a>
+        
+        
+          <a class="share-item" href="https://www.facebook.com/sharer.php?u=http://example.com/2023/04/11/JAR%E6%96%87%E4%BB%B6/" target="_blank" title="Facebook">
+            <i class="iconfont icon-facebooksquare"></i>
+          </a>
+        
+      </div>
+    </div>
   
   
 <script src="/js/shares.js"></script>

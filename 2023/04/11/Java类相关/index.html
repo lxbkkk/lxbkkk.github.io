@@ -11,7 +11,7 @@
   
   <title>
     
-      Archives 
+      Java类相关 
       
       
       |
@@ -106,104 +106,193 @@
 
 
       <div class="flex-container">
-        <!-- 归档页，展示本站所有文章，按照年份降序归类，url形式：https://yoursite/archives/ -->
+        <!-- 文章详情页，展示文章具体内容，url形式：https://yoursite/文章标题/ -->
+<!-- 同时为「标签tag」，「朋友friend」，「分类categories」，「关于about」页面的承载页面，具体展示取决于page.type -->
 
-<!-- last: 按年份把文章分组，当前遍历到的年份 -->
-<!-- now: 当前遍历到的文章的发布年份 -->
 
-<div class="container archives">
-  <div class="post-list">
-    
-        <!-- 后续文章的发布年份呈现 -->
-        <div class="content-title">
-          <h2>
-            <span>2023</span>
-          </h2>
+  <!-- LaTex Display -->
+
+  
+    <script async type="text/javascript" src="/plugins/mathjax/tex-chtml.js"></script>
+  
+  <script>
+    MathJax = {
+      tex: {
+        inlineMath: [['$', '$'], ['\\(', '\\)']]
+      }
+    }
+  </script>
+
+
+
+
+
+  <!-- clipboard -->
+
+  
+    <script async type="text/javascript" src="/plugins/clipboard.min.js"></script>
+  
+  
+<script src="/js/codeCopy.js"></script>
+
+
+
+
+
+
+
+  
+
+  
+
+  
+
+  
+  <!-- 文章内容页 url形式：https://yoursite/文章标题/ -->
+  <div class="container post-details" id="post-details">
+    <div class="post-content">
+      <div class="post-title">Java类相关</div>
+      <div class="post-attach">
+        <span class="post-pubtime">
+          <i class="iconfont icon-updatetime mr-10" title="Update time"></i>
+          2023-04-11 10:05:01
+        </span>
+        
+              <span class="post-tags">
+                <i class="iconfont icon-tags mr-10" title="Tags"></i>
+                
+                <span class="span--tag mr-8">
+                  <a href="/tags/Java/" title="Java">
+                    #Java
+                  </a>
+                </span>
+                
+              </span>
+          
+      </div>
+      <div class="markdown-body">
+        <ul>
+<li><p>RTTI (Run-Time Type Identification)</p>
+<p>运行时类型识别，其作用是在运行时识别一个对象的类型和类的信息。主要方式有传统的RTTI，假定在编译时已经知道了所有的类型和反射机制，在运行时发现和使用类的信息。</p>
+</li>
+<li><p>Class类</p>
+<p>Class类的实例表示Java应用运行时的类或者接口，每个Java类在运行时都在JVM里表现为一个Class对象。数组同样也被映射为Class对象的一个类，所有具有相同元素类型和维数的数组都共享该Class对象。基本类型boolean，byte，char，short，int，long，float，double和关键字void同样表现为Class对象。</p>
+<p>Class类只存在私有构造函数，所以Class对象只能由JVM创建和加载。</p>
+</li>
+<li><p>Java字节码文件</p>
+<ul>
+<li><p>魔数(0xcafebabe)与.class文件的版本</p>
+</li>
+<li><p>常量池</p>
+<p>存储变量的属性、类型和名称，方法的属性、类型和名称等等。</p>
+</li>
+<li><p>访问标志</p>
+<p>表示该class的属性和访问类型，例如是类or接口、访问权限、是否final等信息。</p>
+</li>
+<li><p>类索引、父类索引、接口索引</p>
+</li>
+<li><p>字段表属性</p>
+<p>用于描述接口或类中声明的变量，如作用域、是否static、final，数据类型等等。</p>
+</li>
+<li><p>方法表属性</p>
+</li>
+<li><p>属性表属性</p>
+</li>
+</ul>
+</li>
+<li><p>类的生命周期</p>
+<ul>
+<li><p>加载</p>
+<p>JVM需要完成：</p>
+<ul>
+<li><p>通过一个类的全限定名来获取其定义的二进制字节流</p>
+</li>
+<li><p>将这个字节流所代表的静态存储结构转化为方法区的运行时数据结构</p>
+</li>
+<li><p>在Java堆中生成一个代表这个类的java.lang.Class对象，作为对方法区中这些数据的访问入口</p>
+</li>
+</ul>
+</li>
+<li><p>验证</p>
+<p>确保被加载的类的正确性，确保Class文件的字节流中包含的信息符合当前虚拟机的要求，并且不会危害虚拟机自身的安全。</p>
+<ul>
+<li><p>文件格式验证</p>
+</li>
+<li><p>元数据验证</p>
+</li>
+<li><p>字节码验证</p>
+</li>
+<li><p>符号引用验证</p>
+</li>
+</ul>
+</li>
+<li><p>准备</p>
+<p>为类的静态变量分配内存并将其初始化为默认值</p>
+</li>
+<li><p>解析（动态绑定时可以在初始化阶段之后开始</p>
+<p>把类中的符号引用转换为直接引用</p>
+</li>
+<li><p>初始化</p>
+<p>为类的静态变量赋予正确的初始值</p>
+</li>
+</ul>
+</li>
+<li><p>反射</p>
+<p>TODO</p>
+</li>
+</ul>
+
+      </div>
+      
+        <div class="prev-or-next">
+          <div class="post-foot-next">
+            
+              <a href="/2023/04/11/JAR%E6%96%87%E4%BB%B6/" target="_self">
+                <i class="iconfont icon-chevronleft"></i>
+                <span>Prev</span>
+              </a>
+            
+          </div>
+          <div class="post-attach">
+            <span class="post-pubtime">
+              <i class="iconfont icon-updatetime mr-10" title="Update time"></i>
+              2023-04-11 10:05:01
+            </span>
+            
+                  <span class="post-tags">
+                    <i class="iconfont icon-tags mr-10" title="Tags"></i>
+                    
+                    <span class="span--tag mr-8">
+                      <a href="/tags/Java/" title="Java">
+                        #Java
+                      </a>
+                    </span>
+                    
+                  </span>
+              
+          </div>
+          <div class="post-foot-prev">
+            
+          </div>
         </div>
       
-      <div class="post-item" title="Java类相关">
-        <div class="time-m-d">04-11</div>
-        <div class="title">
-          <a href="/2023/04/11/Java%E7%B1%BB%E7%9B%B8%E5%85%B3/">
-            <span>Java类相关</span>
-          </a>
-        </div>
-      </div>
+    </div>
     
-      <div class="post-item" title="JAR文件">
-        <div class="time-m-d">04-11</div>
-        <div class="title">
-          <a href="/2023/04/11/JAR%E6%96%87%E4%BB%B6/">
-            <span>JAR文件</span>
-          </a>
-        </div>
-      </div>
+
     
-      <div class="post-item" title="Servlet相关">
-        <div class="time-m-d">04-11</div>
-        <div class="title">
-          <a href="/2023/04/11/Servlet%E7%9B%B8%E5%85%B3/">
-            <span>Servlet相关</span>
-          </a>
-        </div>
-      </div>
-    
-      <div class="post-item" title="🎦宇宙探索编辑部">
-        <div class="time-m-d">04-06</div>
-        <div class="title">
-          <a href="/2023/04/06/%E5%AE%87%E5%AE%99%E6%8E%A2%E7%B4%A2%E7%BC%96%E8%BE%91%E9%83%A8/">
-            <span>🎦宇宙探索编辑部</span>
-          </a>
-        </div>
-      </div>
-    
-      <div class="post-item" title="逃逸分析 Escape Analysis">
-        <div class="time-m-d">03-31</div>
-        <div class="title">
-          <a href="/2023/03/31/%E9%80%83%E9%80%B8%E5%88%86%E6%9E%90-Escape-Analysis/">
-            <span>逃逸分析 Escape Analysis</span>
-          </a>
-        </div>
-      </div>
-    
-      <div class="post-item" title="Mina网络通信">
-        <div class="time-m-d">03-31</div>
-        <div class="title">
-          <a href="/2023/03/31/Mina%E7%BD%91%E7%BB%9C%E9%80%9A%E4%BF%A1/">
-            <span>Mina网络通信</span>
-          </a>
-        </div>
-      </div>
-    
-      <div class="post-item" title="Lombok">
-        <div class="time-m-d">03-31</div>
-        <div class="title">
-          <a href="/2023/03/31/Lombok/">
-            <span>Lombok</span>
-          </a>
-        </div>
-      </div>
-    
-      <div class="post-item" title="Linux命令行与shell脚本编程">
-        <div class="time-m-d">03-31</div>
-        <div class="title">
-          <a href="/2023/03/31/Linux%E5%91%BD%E4%BB%A4%E8%A1%8C%E4%B8%8Eshell%E8%84%9A%E6%9C%AC%E7%BC%96%E7%A8%8B/">
-            <span>Linux命令行与shell脚本编程</span>
-          </a>
-        </div>
-      </div>
-    
-      <div class="post-item" title="Hello World">
-        <div class="time-m-d">03-31</div>
-        <div class="title">
-          <a href="/2023/03/31/hello-world/">
-            <span>Hello World</span>
-          </a>
-        </div>
+      <div class="comments-container">
+        
+
+
+
+
+
+
+
       </div>
     
   </div>
-</div>
+
 
         
 <div class="footer">
@@ -458,6 +547,24 @@
 
 
         
+  
+    <div class="share-icon tools-bar-item">
+      <a href="javascript: void(0)" id="share-icon">
+        <i class="iconfont iconshare"></i>
+      </a>
+      <div class="share-content hidden">
+        
+          <a class="share-item" href="https://twitter.com/intent/tweet?text=' + Java%E7%B1%BB%E7%9B%B8%E5%85%B3 + '&url=' + http%3A%2F%2Fexample.com%2F2023%2F04%2F11%2FJava%25E7%25B1%25BB%25E7%259B%25B8%25E5%2585%25B3%2F + '" target="_blank" title="Twitter">
+            <i class="iconfont icon-twitter"></i>
+          </a>
+        
+        
+          <a class="share-item" href="https://www.facebook.com/sharer.php?u=http://example.com/2023/04/11/Java%E7%B1%BB%E7%9B%B8%E5%85%B3/" target="_blank" title="Facebook">
+            <i class="iconfont icon-facebooksquare"></i>
+          </a>
+        
+      </div>
+    </div>
   
   
 <script src="/js/shares.js"></script>
