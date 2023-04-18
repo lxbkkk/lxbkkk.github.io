@@ -8,13 +8,10 @@
   <meta name="author" content="kk" />
   <meta name="description" content="" />
   
+    <meta name="robots" content="noindex" />
+  
   
   <title>
-    
-      IO 
-      
-      
-      |
     
      kk&#39;s Sunday
   </title>
@@ -106,244 +103,32 @@
 
 
       <div class="flex-container">
-        <!-- 文章详情页，展示文章具体内容，url形式：https://yoursite/文章标题/ -->
-<!-- 同时为「标签tag」，「朋友friend」，「分类categories」，「关于about」页面的承载页面，具体展示取决于page.type -->
-
-
-  <!-- LaTex Display -->
-
-  
-    <script async type="text/javascript" src="/plugins/mathjax/tex-chtml.js"></script>
-  
-  <script>
-    MathJax = {
-      tex: {
-        inlineMath: [['$', '$'], ['\\(', '\\)']]
-      }
-    }
-  </script>
-
-
-
-
-
-  <!-- clipboard -->
-
-  
-    <script async type="text/javascript" src="/plugins/clipboard.min.js"></script>
-  
-  
-<script src="/js/codeCopy.js"></script>
-
-
-
-
-
-
-
-  
-
-  
-
-  
-
-  
-  <!-- 文章内容页 url形式：https://yoursite/文章标题/ -->
-  <div class="container post-details" id="post-details">
-    <div class="post-content">
-      <div class="post-title">IO</div>
-      <div class="post-attach">
-        <span class="post-pubtime">
-          <i class="iconfont icon-updatetime mr-10" title="Update time"></i>
-          2023-04-13 14:22:52
-        </span>
-        
-              <span class="post-tags">
-                <i class="iconfont icon-tags mr-10" title="Tags"></i>
-                
-                <span class="span--tag mr-8">
-                  <a href="/tags/Java/" title="Java">
-                    #Java
-                  </a>
-                </span>
-                
-              </span>
-          
-      </div>
-      <div class="markdown-body">
-        <p>输入类型的IO调用</p>
-<ol>
-<li>进程向操作系统请求外部数据</li>
-<li>操作系统将外部数据加载到内核缓冲区</li>
-<li>操作系统将数据从内核缓冲区拷贝到进程缓冲区</li>
-<li>进程读取数据继续后面的工作</li>
-</ol>
-<p>IO步骤</p>
-<ol>
-<li>IO调用 - 进程发起</li>
-<li>IO执行 - 操作系统执行<ul>
-<li>准备数据阶段 - 内核等待IO设备准备好数据</li>
-<li>拷贝数据阶段 - 将数据从内核缓冲区拷贝到用户空间缓冲区</li>
-</ul>
-</li>
-</ol>
-<p>同步和异步IO</p>
-<ol>
-<li>描述的是针对当前执行线程&#x2F;进程，发起IO调用后，当前线程&#x2F;进程是否挂起等待操作系统的IO执行完成</li>
-<li>同步<ul>
-<li>程序发起IO调用后，当前线程或进程需要等待操作系统完成IO工作并告知进程已经完成，线程&#x2F;进程才能继续向下执行指令</li>
-<li>请求方从发起请求到数据最后完成的过程都需要自己参与</li>
-</ul>
-</li>
-<li>异步<ul>
-<li>程序发起IO调用后，不必等待操作系统IO执行完毕，可以向下继续执行指令，操作系统完成IO后，当前进程&#x2F;线程会收到操作系统的通知</li>
-<li>应用发送完指令后就不再参与过程，只需等待最终完成结果的通知</li>
-</ul>
-</li>
-</ol>
-<p>阻塞&amp;非阻塞</p>
-<ol>
-<li>阻塞IO<ul>
-<li>内核IO 操作彻底完成后，才返回用户空间，执行用户的操作</li>
-<li>传统的IO模型都是同步阻塞IO</li>
-<li>Java中默认创建的socket是阻塞的</li>
-</ul>
-</li>
-<li>非阻塞IO<ul>
-<li>用户空间拿到状态就返回</li>
-<li>非阻塞IO要求socket被设置为NONBLOCK</li>
-</ul>
-</li>
-</ol>
-<p>BIO</p>
-<ol>
-<li>在内核进行IO执行的两个阶段，用户线程都被block了</li>
-<li>程序简单，阻塞等待数据期间，用户线程挂起，基本不会占用CPU资源</li>
-</ol>
-<p>Non-Blocking IO （同步非阻塞</p>
-<ol>
-<li>相对于BIO提升了性能</li>
-<li>频繁的轮询导致频繁的系统调用，会耗费大量的CPU资源</li>
-<li>频繁轮询导致的无效系统调用</li>
-</ol>
-<p>IO多路复用（同步非阻塞</p>
-<ol>
-<li>由一个线程监控多个网络请求</li>
-<li>Java中的New IO<ul>
-<li>Channel</li>
-<li>Selector<ul>
-<li>多路复用器</li>
-<li>只需要一个线程便可以管理多个客户端连接，当客户端数据到了才会为其服务</li>
-</ul>
-</li>
-<li>Buffer</li>
-<li>IO多路复用模型中，线程首先发起 select 调用，询问内核数据是否准备就绪，等内核把数据准备好了，用户线程再发起 read 调用，read 调用的过程还是阻塞的</li>
-</ul>
-</li>
-<li>目前支持IO多路复用的系统调用<ul>
-<li>select<ul>
-<li>几乎在所有的操作系统上都有支持</li>
-<li>支持一次查询多个系统调用的可用状态</li>
-</ul>
-</li>
-<li>epoll<ul>
-<li>linux2.6版本</li>
-<li>属于select 调用的增强版本，优化了IO执行效率</li>
-</ul>
-</li>
-</ul>
-</li>
-<li>可以同时处理成千上万个连接，系统不必创建线程&#x2F;维护线程，减小系统开销</li>
-</ol>
-<p>信号驱动IO模型（同步非阻塞</p>
-<ol>
-<li>由于大部分情况下的轮询都是无效的，所以考虑使用信号驱动IO模型</li>
-<li>在调用sigaction时建立一个SIGIO的信号联系，当内核数据准备好之后再通过SIGIO信号通知线程数据准备好后的可读状态，线程收到通知后再发起读取数据的请求</li>
-<li>由于信号驱动IO的模型下应用线程在发出信号监控后即可返回，不会阻塞，所以一个应用线程也可以同时监控多个网络请求</li>
-</ol>
-<p>异步IO（异步非阻塞</p>
-<ol>
-<li>Java中的AIO</li>
-<li>应用只需要向内核发送一个read请求，告诉内核它要读取数据，然后立刻返回</li>
-<li>内核收到请求后会建立一个信号联系，当数据准备就绪，内核会主动把数据从内核复制到用户空间，等所有操作完成后，内核会发起一个通知告诉应用</li>
-<li>需要完成事件的注册与传递，需要底层操作系统提供大量支持</li>
-</ol>
-<p>基础知识</p>
-<ol>
-<li>read 系统调用<ul>
-<li>把数据从内核缓冲区复制到进程缓冲区</li>
-</ul>
-</li>
-<li>write 系统调用<ul>
-<li>把数据从进程缓冲区复制到内核缓冲区</li>
-</ul>
-</li>
-<li>内核缓冲区和磁盘的读写<ul>
-<li>由操作系统内核完成</li>
-</ul>
-</li>
-</ol>
-<p>缓冲区</p>
-<ol>
-<li>为了减少频繁的系统IO调用</li>
-</ol>
-
-      </div>
-      
-        <div class="prev-or-next">
-          <div class="post-foot-next">
+        <div class="container index">
+  <div class="post-list">
+    <!-- 遍历渲染文章 -->
+    
+      <div class="post-item" title="Hello World">
+        <div class="time-m-d">2023-03-31</div>
+        <div class="title">
+          <a href="/2023/03/31/hello-world/">
             
-              <a href="/2023/04/11/Java%E7%B1%BB%E7%9B%B8%E5%85%B3/" target="_self">
-                <i class="iconfont icon-chevronleft"></i>
-                <span>Prev</span>
-              </a>
-            
-          </div>
-          <div class="post-attach">
-            <span class="post-pubtime">
-              <i class="iconfont icon-updatetime mr-10" title="Update time"></i>
-              2023-04-13 14:22:52
-            </span>
-            
-                  <span class="post-tags">
-                    <i class="iconfont icon-tags mr-10" title="Tags"></i>
-                    
-                    <span class="span--tag mr-8">
-                      <a href="/tags/Java/" title="Java">
-                        #Java
-                      </a>
-                    </span>
-                    
-                  </span>
               
-          </div>
-          <div class="post-foot-prev">
+                <span>Hello World</span>
+              
             
-              <a href="/2023/04/18/AIED/" target="_self">
-                <span>Next</span>
-                <i class="iconfont icon-chevronright"></i>
-              </a>
-            
-          </div>
+          </a>
         </div>
-      
-    </div>
-    
-
-    
-      <div class="comments-container">
-        
-
-
-
-
-
-
-
       </div>
     
   </div>
-
+  <nav class="post-navigation">
+    
+      <a href="/"><i class="iconfont icon-angleleft"></i></a>
+    
+    <span class="page-num">2 / 2</span>
+    
+  </nav>
+</div>
 
         
 <div class="footer">
@@ -598,24 +383,6 @@
 
 
         
-  
-    <div class="share-icon tools-bar-item">
-      <a href="javascript: void(0)" id="share-icon">
-        <i class="iconfont iconshare"></i>
-      </a>
-      <div class="share-content hidden">
-        
-          <a class="share-item" href="https://twitter.com/intent/tweet?text=' + IO + '&url=' + http%3A%2F%2Fexample.com%2F2023%2F04%2F13%2FIO%2F + '" target="_blank" title="Twitter">
-            <i class="iconfont icon-twitter"></i>
-          </a>
-        
-        
-          <a class="share-item" href="https://www.facebook.com/sharer.php?u=http://example.com/2023/04/13/IO/" target="_blank" title="Facebook">
-            <i class="iconfont icon-facebooksquare"></i>
-          </a>
-        
-      </div>
-    </div>
   
   
 <script src="/js/shares.js"></script>
